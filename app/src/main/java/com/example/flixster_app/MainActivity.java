@@ -25,14 +25,16 @@ import okhttp3.Headers;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=6c7d2ca1a121bb949248f39b309ff1c2&language=en-US&page=1";
+    //private ActivitySimpleBinding binding;
+
     private static final String TAG = "Mainactivity";
     private List<Movie> movies;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //System.out.println(R.string.movie_API_Key + " NICNEINCINECINECINECIN");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //ctivitySimpleBinding.inflate()
         movies = new ArrayList<>();
 
         RecyclerView rvMovies = findViewById(R.id.rvMovies);
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get(NOW_PLAYING_URL, new JsonHttpResponseHandler() {
+        client.get("https://api.themoviedb.org/3/movie/now_playing?api_key=6c7d2ca1a121bb949248f39b309ff1c2", new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 Log.d(TAG, "onSuccess");
