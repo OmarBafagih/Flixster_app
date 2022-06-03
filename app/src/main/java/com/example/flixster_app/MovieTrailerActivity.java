@@ -1,5 +1,6 @@
 package com.example.flixster_app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.google.android.youtube.player.YouTubeStandalonePlayer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +27,15 @@ public class MovieTrailerActivity extends YouTubeBaseActivity {
         Intent intent = getIntent();
         String youtubeID = intent.getStringExtra("key");
 
-        // temporary test video id -- TODO replace with movie trailer video id
-        final String videoId = youtubeID;
-        //https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=<<api_key>>&language=en-US
+
+        //starting youtubeStandalonePlayers activity
+        Activity context;
+        Intent intent2 = YouTubeStandalonePlayer.createVideoIntent(this, getString(R.string.youtube_API_Key), youtubeID);
+        startActivity(intent2);
+
 
         // resolve the player view from the layout
-        YouTubePlayerView playerView = (YouTubePlayerView) findViewById(R.id.player);
+        /*YouTubePlayerView playerView = (YouTubePlayerView) findViewById(R.id.player);
 
         // initialize with API key stored in secrets.xml
         playerView.initialize(getString(R.string.youtube_API_Key), new YouTubePlayer.OnInitializedListener() {
@@ -47,6 +52,6 @@ public class MovieTrailerActivity extends YouTubeBaseActivity {
                 // log the error
                 Log.e("MovieTrailerActivity", "Error initializing YouTube player");
             }
-        });
+        });*/
     }
 }

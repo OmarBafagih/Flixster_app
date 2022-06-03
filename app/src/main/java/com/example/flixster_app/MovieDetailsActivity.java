@@ -80,15 +80,19 @@ public class MovieDetailsActivity extends AppCompatActivity {
                 .into(ivPosterOrBackdrop);
 
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get(("https://api.themoviedb.org/3/movie/" + Integer.toString(movie.getId()) + "/videos?api_key=<<api_key>>&language=en-US"), new JsonHttpResponseHandler() {
+        client.get(("https://api.themoviedb.org/3/movie/" + movie.getId() + "/videos?api_key=" + getString(R.string.movie_API_Key2) + "&language=en-US"), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 JSONObject jsonObject = json.jsonObject;
                 try{
                     JSONArray results = jsonObject.getJSONArray("results");
-                    movies.addAll(Movie.fromJsonArray(results));
-                    youtubeVidID = Integer.toString(movies.get(0).getId());
-
+                    System.out.println(results + "nidfindsihfdshif");
+                    //movies.addAll(Movie.fromJsonArray(results));
+                    //youtubeVidID = results.get(0).getClass().getField("key").toString();
+                    youtubeVidID = results.getJSONObject(0).getString("key");
+                 //   youtubeVidID = Integer.toString(movies.get(0).getId());
+                    System.out.println(youtubeVidID + "   NICENICENICENICENCIE");
+                    //System.out.println(movies.get(0).getId());
 
                 }
                 catch(JSONException e){

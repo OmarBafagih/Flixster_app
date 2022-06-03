@@ -3,6 +3,8 @@ package com.example.flixster_app.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BlurMaskFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.flixster_app.MovieDetailsActivity;
 import com.example.flixster_app.R;
@@ -74,15 +77,27 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHoler>{
             String imageURL;
             if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
                 imageURL = movie.getBackdropPath();
+                int radius = 40;
+                int margin = 0;
+
+                //setting placeholder image and rounded corners
+                Glide.with(context).load(imageURL)
+                        .placeholder(R.drawable.flicks_movie_placeholder)
+                        .transform(new RoundedCorners(radius))
+                        .into(ivPoster);
             }
             else{
                 imageURL = movie.getPosterPath();
+                int radius = 40;
+                int margin = 0;
+
+                //setting placeholder image and rounded corners
+                Glide.with(context).load(imageURL)
+                        .placeholder(R.drawable.flicks_backdrop_placeholder)
+                        .transform(new RoundedCorners(radius))
+                        .into(ivPoster);
             }
-            int radius = 30; // corner radius, higher value = more rounded
-            int margin = 0;
-            Glide.with(context).load(imageURL)
-                    .placeholder(R.drawable.flicks_movie_placeholder)
-                    .into(ivPoster);
+
 
         }
 

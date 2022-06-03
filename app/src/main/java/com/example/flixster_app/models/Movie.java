@@ -16,7 +16,7 @@ public class Movie {
     String title;
     String overview;
     Double voteAverage;
-    Integer id;
+    String id;
 
     //no argument constructor needed for Parceler to work
     public Movie() {}
@@ -29,7 +29,7 @@ public class Movie {
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
         voteAverage = jsonObject.getDouble("vote_average");
-        id = jsonObject.getInt("id");
+        id = jsonObject.getString("id");
 
     }
 
@@ -43,7 +43,7 @@ public class Movie {
     }
 
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 

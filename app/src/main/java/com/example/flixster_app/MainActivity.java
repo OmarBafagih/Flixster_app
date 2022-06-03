@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("https://api.themoviedb.org/3/movie/now_playing?api_key=6c7d2ca1a121bb949248f39b309ff1c2", new JsonHttpResponseHandler() {
+        client.get("https://api.themoviedb.org/3/movie/now_playing?api_key=6c7d2ca1a121bb949248f39b309ff1c2&", new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
                 Log.d(TAG, "onSuccess");
